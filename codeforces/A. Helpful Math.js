@@ -5,14 +5,10 @@ const rl = readline.createInterface({
    output: process.stdout,
 })
 
-let n = 0;
-let k = 0;
-let res = 0;
+let res = 0
 
 rl.on("line", line => {
-   [n, k] = line.split(" ").map(Number);
-
-   res = Math.floor(n * k / 2);
+   res = line.split("+").sort().join("+");
 })
 
 rl.on("close", () => {

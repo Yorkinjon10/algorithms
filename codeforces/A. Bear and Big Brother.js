@@ -5,16 +5,19 @@ const rl = readline.createInterface({
    output: process.stdout,
 })
 
-let n = 0;
-let k = 0;
-let res = 0;
+let res = 0
 
 rl.on("line", line => {
-   [n, k] = line.split(" ").map(Number);
+   let [a, b] = line.split(" ").map(Number);
 
-   res = Math.floor(n * k / 2);
+   while(a <= b) {
+      a = a * 3;
+      b = b * 2;
+
+      res++;
+   }
+   console.log(res);
 })
 
 rl.on("close", () => {
-   console.log(res);
 })
