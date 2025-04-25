@@ -7,14 +7,15 @@ const rl = readline.createInterface({
 });
 
 rl.on("line", (line) => {
-
    const n = Number(line);
-   const evenCount = Math.floor(n / 2);
-   const oddCount = Math.ceil(n / 2);
    
-   const sum = evenCount * (evenCount + 1) - oddCount * oddCount;
+   if(n%2 === 1) {
+     const halfSum = Math.floor(n/2) + Math.pow(-1, n)*n;
+     console.log(halfSum);
+     return;
+   }
    
-   console.log(sum);
+   console.log(n/2);
    rl.close();
 });
 
