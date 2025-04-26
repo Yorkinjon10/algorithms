@@ -6,21 +6,16 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-let friendsQuantity = 0;
-let arr = []
+let drinks = 0;
 rl.on("line", (line) => {
-   if(!friendsQuantity) {
-      friendsQuantity = Number(line);
+   if(!drinks) {
+      drinks = Number(line);
       return;
    }
 
-   const gifts = line.split(" ").map(Number);
+   const gifts = line.split(" ").map(Number).reduce((acc, curr) => acc + curr , 0);
 
-   for(let i=0; i<gifts.length; i++) {
-      arr[gifts[i]-1] = i+1
-   }
-
-   console.log(arr.join(" "));
+   console.log(gifts/drinks);
    rl.close();
 });
 
