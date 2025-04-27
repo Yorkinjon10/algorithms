@@ -5,11 +5,14 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+let sortingNum = 0;
 rl.on("line", (p) => {
-  if (p.includes('H') || p.includes('Q') || p.includes('9')) {
-    console.log("YES");
+   if(!sortingNum) { 
+      sortingNum = Number(p)
+      return;
   } else {
-    console.log("NO");
+   const nums = p.split(" ").map(Number).sort((a, b) => a-b);
+    console.log(nums.join(" "));
   }
   rl.close();
 });
