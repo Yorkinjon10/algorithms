@@ -5,18 +5,27 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+let a = ""
+let res = []
 rl.on("line", (line) => {
-   const [n, k] = line.split(" ").map(BigInt);
-
-   const half = (n + 1n) / 2n; // Correct ceil(n/2)
-
-   let result;
-   if (k <= half) {
-      result = 2n * (k - 1n) + 1n;
-   } else {
-      result = 2n * (k - half);
+   if(!a) {
+      a = line
+      return;
    }
 
-   console.log(result.toString());
+   let b = line;
+
+   const splitA = a.split("");
+   const splitB = b.split("");
+
+   for(let i=0; i<splitA.length; i++) {
+      if(splitA[i] === splitB[i]) {
+         res.push("0");
+      } else {
+         res.push("1");
+      }
+   }
+   console.log(res.join(""));
+
    rl.close();
 });
