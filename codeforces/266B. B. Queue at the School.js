@@ -5,22 +5,29 @@ const rl = readline.createInterface({
    output: process.stdout,
 })
 
+let time = 0;
+let queue = "";
+
 rl.on("line", line => {
-   let year = Number(line) + 1;
-
-   while (!isUnique(year)) {
-      year++;
-   }
+   if (!time) {
+      time = Number(line.split(" ")[1]);
+   } else {
+      queue = [...line];
+      while (time > 0) {
+         for (let i = 0; i < queue.length - 1; i++) {
+            if (queue[i] === "B" && queue[i + 1] === "G") {
+               queue[i] = "G";
+               queue[i + 1] = "B"
+               i++;
+            }
+         }
+         time--
+      }
       
-   console.log(year);
-   rl.close()
-
+      console.log(queue.join(""));
+      rl.close()
+   }
 })
-
-function isUnique(year) {
-   let set = new Set([...year.toString()]);
-   return set.size === 4;
-}
 
 rl.on("close", () => {
 
